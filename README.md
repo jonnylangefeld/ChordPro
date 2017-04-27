@@ -3,6 +3,10 @@
 Create your own, beautiful looking, one paged song sheets
 
 <p align="center">
+  <img src="samples/screenshot.png"/ width=75%>
+</p>
+
+<p align="center">
   <img src="samples/sample.png"/ width=75%>
 </p>
 
