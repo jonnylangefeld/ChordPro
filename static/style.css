@@ -1,0 +1,241 @@
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    font-family: Arial;
+    background-color: #c8dadf;
+    padding: 40px;
+    padding-top: 20;
+}
+
+a {
+    color: #777;
+    text-decoration: none;
+    transition transfrom 2s;
+}
+
+h1 {
+    margin: 10 0 10 0;
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+input[type=checkbox] {
+    width: 20px
+}
+
+.center-bottom {
+    text-align: center;
+    width: 100%;
+    height: 25%;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+}
+
+#logo {
+    background: url(img/logo.png) no-repeat center center;
+    height: 100%;
+    width: 250px;
+    margin: auto;
+    background-size: 173%;
+}
+
+.login {
+    margin: 20px auto;
+    width: 300px;
+    transition: heigth 1s;
+}
+
+.login-screen {
+    background-color: #ECF0F1;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.login-screen.drag {
+    background-color: #ffffff;
+    /*transform: scale(1.1);
+    webkit-transform: scale(1.1);*/
+}
+
+.app-title {
+    text-align: center;
+    color: #777;
+}
+
+.form-group {
+    text-align: center;
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 10;
+    display: none;
+}
+
+.checkboxes {
+    font-weight: 600;
+    font-size: 20;
+    color: #d4d4d4;
+}
+
+.checkboxes>label {
+    margin: 0 10 0 10;
+    cursor: pointer;
+}
+
+.checked {
+    color: #777;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, .3), 0px -1px 0px rgba(0, 0, 0, .7);
+}
+
+#file {
+    display: none;
+}
+
+#box__choose {
+    cursor: pointer;
+}
+
+#box__choose:hover {
+    text-shadow: 0px 1px 7px rgba(90, 72, 72, 0.65);
+}
+
+.box__dragndrop {}
+
+.login-form {
+    text-align: center;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+input {
+    text-align: center;
+    background-color: #e5edf1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border .5s;
+}
+
+input:focus {
+    border: 2px solid #3498DB;
+    box-shadow: none;
+}
+
+.btn {
+    border: 2px solid transparent;
+    background: #c8dadf;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 3px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.btn:hover {
+    background-color: #2980B9;
+}
+
+.login-link {
+    font-size: 12px;
+    color: #444;
+    display: block;
+    margin-top: 12px;
+}
+
+#error {
+    text-align: center;
+    background-color: rgba(224, 159, 159, 0.49);
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    border: 3px solid rgb(156, 0, 0);
+    color: rgb(156, 0, 0);
+    margin: 0 5 10 5;
+}
+
+.switch-field {
+    overflow: hidden;
+}
+
+.switch-title {
+    margin-bottom: 6px;
+}
+
+#switch-wrapper {
+    display: inline-block;
+}
+
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+    float: left;
+}
+
+.switch-field label {
+    display: inline-block;
+    width: 60px;
+    background-color: #e4e4e4;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: none;
+    padding: 6px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked+label {
+    background-color: #c8dadf;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+}
+
+.switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+}

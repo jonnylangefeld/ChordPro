@@ -1,0 +1,197 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+<script type="text/javascript" src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}"></script>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>Login</h1>
+            </div>
+            <div class="checkboxes form-group">
+                <label><input type="checkbox" name="keys" value="original" style="display:none">Original</label><br> {{ options|safe }}
+            </div>
+            <div class="form-group">
+                <input type="file" name="files[]" id="file" accept="application/rtf, text/rtf" multiple/>
+                <label for="file"><strong id="box__choose">Choose *.rtf files</strong><span class="box__dragndrop"> or drag them here</span>.</label>
+            </div>
+
+            <div class="switch-field form-group">
+                <div id="switch-wrapper">
+                    <input type="radio" id="switch_left" name="result_type" value="ZIP" checked/>
+                    <label for="switch_left">ZIP</label>
+                    <input type="radio" id="switch_right" name="result_type" value="PDF" />
+                    <label for="switch_right">PDF</label>
+                </div>
+
+            </div>
+
+            <div class="login-form">
+                {% if error is not defined %}
+                <div class="control-group">
+                    <input type="text" class="login-field" value="" placeholder="username" name="username">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="password" class="login-field" value="" placeholder="password" name="password">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+                {% endif %}
+                <div id="error" {% if error %}style="display: inline-block; opacity: 0" {% else %}style="display: none;" {% endif %}> {{ error }} </div>
+                <div class="form-group">
+                    <label id="message-box"></label>
+                </div>
+                <input type="submit" value="Download" class="btn btn-primary btn-large btn-block">
+                <br>
+                <a href='/logout'>Logout</a>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="center-bottom">
+    <div id="logo" />
+</div>
+
+<script>
+    {% if error is not defined %}
+    $('.form-group').delay(500).fadeIn(500);
+    $('.login').animate({
+        width: "100%"
+    }, 400);
+    $('.app-title > h1').fadeOut(500, function() {
+        $(this).text('Convert ChordPro Files').fadeIn(500);
+    });
+    $('.login-screen').animate({
+        height: "70%"
+    }, 400);
+    $('.login-form').animate({
+        bottom: "20px"
+    }, 400);
+    $('.control-group').fadeOut(1000);
+    $('.login-screen').css({
+        'outline': '4px dashed #92b0b3',
+        'outline-offset': '-10px',
+        'transition': 'outline-offset .5s ease-in-out, background-color .5s linear'
+    });
+    {% else %}
+    $('.form-group').show()
+    $('.login').css({'width':'100%'})
+    $('.app-title > h1').text('Convert ChordPro Files')
+    $('.login-screen').css({'transition':''})
+    $('.login-screen').animate({
+        height: "75%"
+    }, 100);
+    $('.center-bottom').animate({
+        bottom: "20px"
+    }, 100);
+    $('#logo').animate({
+        backgroundSize: "140%"
+    }, 100);
+    $('.login-form').css({'bottom':'20px'})
+    $('.control-group').hide()
+    $('.login-screen').css({
+        'outline': '4px dashed #92b0b3',
+        'outline-offset': '-10px'
+    });
+    $('#error').animate({
+        display: "inline-block",
+        opacity: 1
+    }, 400);
+    {% endif %}
+
+    $('.checkboxes > label').on('click', function(e) {
+        e.preventDefault();
+        $(this).toggleClass("checked");
+        var checkbox = $(this).find("input[type=checkbox]")
+        checkbox.prop("checked", !checkbox.prop("checked"));
+    });
+
+
+    $('.login-form').css({
+        'position': 'absolute',
+        'left': '0px',
+        'width': '100%'
+    });
+
+    $('form').on(
+        'dragover',
+        function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('.login-screen').addClass('drag')
+        }
+    )
+    $('form').on(
+        'dragenter',
+        function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('.login-screen').addClass('drag')
+        }
+    )
+    $('form').on(
+        'dragleave',
+        function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('.login-screen').removeClass('drag')
+        }
+    )
+    $('form').on(
+        'dragend',
+        function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('.login-screen').removeClass('drag')
+        }
+    )
+    $('form').on(
+        'drop ondrop',
+        function(e) {
+            if (e.originalEvent.dataTransfer) {
+                if (e.originalEvent.dataTransfer.files.length) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $("#file").prop("files", e.originalEvent.dataTransfer.files);
+
+                    $('.login-screen').removeClass('drag')
+                }
+            }
+        }
+    );
+    $('#file').on(
+        'change',
+        function(e) {
+          if (e.originalEvent.currentTarget) {
+              if (e.originalEvent.currentTarget.files.length) {
+                    var length = e.originalEvent.currentTarget.files.length
+                    $('#error').animate({
+                        display: "inline-block",
+                        opacity: 0
+                    }, 200);
+                    $('.login-screen').delay(200).animate({
+                        height: "70%"
+                    }, 100);
+                    $('.center-bottom').delay(200).animate({
+                        bottom: "30px"
+                    }, 100);
+                    $('#logo').delay(200).animate({
+                        backgroundSize: "173%"
+                    }, 100);
+                    $('#message-box').delay(200).slideUp(250, function() {
+                        $(this).text(length + ' Files selected').slideDown(250);
+                    });
+                }
+              }
+          }
+    );
+    {% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+               $('#message-box').slideUp(250, function() {
+                   $(this).text({{ message }}).slideDown(250);
+               });
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
+</script>
