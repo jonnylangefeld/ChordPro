@@ -2,7 +2,9 @@
 
 Create your own, beautiful looking, one paged song sheets
 
-![sample image](samples/sample.png)
+<p align="center">
+  <img src="samples/sample.png"/ width=75%>
+</p>
 
 ## Run the app locally
 
