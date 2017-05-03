@@ -18,7 +18,7 @@ def convert(path, f, target=None):
     #RTF einlesen
     doc = Rtf15Reader.read(f)
     raw = PlaintextWriter.write(doc).getvalue()
-    pattern="(^[\xc3\x9f\xc3\x84\xc3\x96\xc3\x9c\xc3\xa4\xc3\xbc\xc3\xb6\w\s]+\n+)(key:[\w#]+\n+)?(bpm:[\d]+\n+)?(.+)(CCLI Song # (\d+)\\n+(.+)\\n+\\xc2\\xa9 (.+))"
+    pattern="(^[\xc3\x9f\xc3\x84\xc3\x96\xc3\x9c\xc3\xa4\xc3\xbc\xc3\xb6\xe2\x80\x99,\w\s]+\n+)(key:[\w#]+\n+)?(bpm:[\d]+\n+)?(.+)(CCLI Song # (\d+)\\n+(.+)\\n+\\xc2\\xa9 (.+))"
     match = re.search(pattern,raw,re.DOTALL)
     info_dict = {}
     info_dict['title'] = match.group(1).replace('\n','')
