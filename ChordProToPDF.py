@@ -51,6 +51,7 @@ def home():
                         if keyOption == 'original':
                             keyOption = None
                         try:
+                            print f
                             convert(path,f,keyOption)
                         except KeyError as e:
                             print str(e) + ' not found in chords for key of the file. Are you sure your file has the correct key?'
