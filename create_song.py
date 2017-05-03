@@ -166,7 +166,7 @@ def convert(path, f, target=None):
                 y -= 1.5 * lineHeight #Abstand nach jedem Abschnitt
 
 
-        P1 = Paragraph(u'\u00a9 '+
+        P1 = Paragraph(('© ')+
                        info_dict['copyright']+
                        '<br/>Gebrauch nur zur Nutzung im Rahmen von Veranstaltungen der City Chapel Stuttgart',copyrightstyle)
         P1.wrap(realWidth, height)
