@@ -23,3 +23,9 @@ Create your own, beautiful looking, one paged song sheets
 6. Access the running app in a browser at http://localhost:8080
 7. Log in (default user: admin, password: admin)
 8. Select **Man of sorrows - C.rtf** from the samples directory
+
+## Run app locally with docker:
+
+1. Install docker
+2. `docker build -t chordpro .`
+3. `docker run -d -p 8080:80 --name chordpro --rm chordpro`

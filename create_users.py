@@ -11,7 +11,7 @@ engine = create_engine('sqlite:///users.db', echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-user = User("admin",sha256_crypt.encrypt('admin'))
+user = User("sven",sha256_crypt.encrypt('Ch0rdPr0'))
 session.add(user)
 
 # commit the record the database
